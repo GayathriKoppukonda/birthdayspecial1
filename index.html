@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday!</title>
+  <style>
+    body {
+      background: linear-gradient(to top right, #ffdde1, #ee9ca7);
+      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+      color: #4b2c20;
+      padding: 30px;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      animation: fadeIn 2s ease-out;
+    }
+
+    .flower {
+      width: 100px;
+      margin: 10px;
+    }
+
+    .photo {
+      width: 200px;
+      margin: 15px;
+      border: 5px solid #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+    }
+
+    .photo:hover {
+      transform: scale(1.1);
+    }
+
+  .photos {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 2s ease-out;
+      z-index: 2;
+      position: relative;
+    }
+
+    .message {
+      font-size: 1.5em;
+      margin-top: 20px;
+      animation: fadeInUp 3s ease-out;
+    }
+
+    /* Animations */
+     .floating-balloons {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .floating-balloons img {
+      position: absolute;
+      width: 60px;
+      animation: rise linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    @keyframes rise {
+      0% { transform: translateY(100vh) scale(1); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translateY(-150vh) scale(1.2); opacity: 0; }
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #fff;
+      border: none;
+      border-radius: 20px;
+      font-size: 1.2em;
+      cursor: pointer;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      z-index: 3;
+      position: relative;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff8f0;
+      padding: 20px 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+
+    .popup.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎉 Happy Birthday, daddy! 🎂</h1>
+
+  <!-- Animations -->
+  <div class="floating-balloons" id="balloons"></div>
+
+ <div class="floating-balloons" id="balloons"></div>
+
+  <div class="message">
+    Wishing you joy, love, and lots of cake on your special day! 🎂💐
+  </div>
+
+  <div class="photos">
+    <img src="C:\23KT1A05F5\bday1.jpeg" alt="Memory 1" class="photo" />
+    <img src="C:\23KT1A05F5\bday2.jpeg" alt="Memory 2" class="photo" />
+<img src="C:\23KT1A05F5\bday3.jpeg" alt="Memory 4" class="photo" />
+<img src="C:\23KT1A05F5\bday5.jpeg" alt="Memory 5" class="photo" />
+<img src="C:\23KT1A05F5\bday6.jpeg" alt="Memory 6" class="photo" />
+<img src="C:\23KT1A05F5\bday7.jpeg" alt="Memory 7" class="photo" />
+  </div>
+
+  <button class="button" onclick="showMessage()">💌 Click to see a special message</button>
+
+  <div class="popup" id="popup">
+    <h2>💖 From the Heart 💖</h2>
+    <p>Dear Dad,<br><br>
+    On this beautiful day, I want you to know how much you are loved and appreciated. Thank you for being the light in our lives. May this birthday bring you endless joy and warm memories!<br><br>
+    With love, 💝<br>
+    Amma, Honey, Samhi</p>
+  </div>
+  <script>
+   
+
+    // Floating balloons with real balloon images
+const balloonImages = [
+
+  "https://cdn.pixabay.com/photo/2025/05/18/14/05/congratulations-9607355_1280.png",
+  "https://cdn.pixabay.com/photo/2025/05/18/14/05/congratulations-9607355_1280.png", 
+  "https://cdn.pixabay.com/photo/2025/05/18/14/05/congratulations-9607355_1280.png", 
+  "https://cdn.pixabay.com/photo/2025/05/18/14/05/congratulations-9607355_1280.png", 
+  "https://cdn.pixabay.com/photo/2025/05/18/14/05/congratulations-9607355_1280.png"  
+
+];
+
+for (let i = 0; i < 15; i++) {
+  const balloon = document.createElement("img");
+  balloon.src = balloonImages[Math.floor(Math.random() * balloonImages.length)];
+  balloon.style.left = Math.random() * 100 + "vw";
+  balloon.style.animationDuration = (6 + Math.random() * 6) + "s";
+  balloon.style.bottom = -Math.random() * 200 + "px";
+  document.getElementById("balloons").appendChild(balloon);
+}
+    function showMessage() {
+      document.getElementById("popup").classList.add("show");
+    }
+  </script>
+
+</body>
+</html>
